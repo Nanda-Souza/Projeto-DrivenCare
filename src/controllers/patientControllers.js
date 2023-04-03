@@ -9,18 +9,18 @@ async function create(req, res, next) {
     next(err);
   }
 }
-/*
+
 async function signin(req, res, next) {
   const { email, password } = req.body;
   try {
-    const token = await userServices.signin({ email, password });
+    const token = await patientServices.signin({ email, password });
     return res.send({ token });
   } catch (err) {
     next(err);
   }
 }
-*/
+
 export default {
   create,
-  //signin,
+  signin,
 };

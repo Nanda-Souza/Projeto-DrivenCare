@@ -25,19 +25,19 @@ function notFoundError() {
     name: "NotFoundError",
     message: "No result for this search!",
   };
-}
+}*/
 
 function invalidCredentialsError() {
   return {
     name: "InvalidCredentialsError",
     message: "Email or password are incorrect",
   };
-}*/
+}
 
 export default {
   conflictError,
   duplicatedEmailError,
   //unauthorizedError,
   //notFoundError,
-  //invalidCredentialsError,
+  invalidCredentialsError,
 };

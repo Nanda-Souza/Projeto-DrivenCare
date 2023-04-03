@@ -18,17 +18,17 @@ async function create({ name, email, password }) {
     [name, email, password]
   );
 }
-/*
-async function createSession({ token, userId }) {
+
+async function createSession({ token, user_id }) {
   await connectionDb.query(
     `
-        INSERT INTO sessions (token, "userId")
+        INSERT INTO sessions (token, user_id)
         VALUES ($1, $2)
     `,
-    [token, userId]
+    [token, user_id]
   );
 }
-
+/*
 async function findSessionByToken(token) {
   return await connectionDb.query(
     `
@@ -50,7 +50,7 @@ async function findById(id) {
 export default {
   findByEmail,
   create,
-  /*createSession,
-  findById,
+  createSession,
+  /*findById,
   findSessionByToken,*/
 };
