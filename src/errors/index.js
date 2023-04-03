@@ -12,6 +12,16 @@ function duplicatedEmailError(email) {
     email,
   };
 }
+
+function medicalSpecialityError(speciality) {  
+  return {
+    name: "MedicalSpecialityError",
+    message: "The medical speciality provided is not registered",
+    speciality,    
+  };
+}
+
+
 /*
 function unauthorizedError() {
   return {
@@ -37,6 +47,7 @@ function invalidCredentialsError() {
 export default {
   conflictError,
   duplicatedEmailError,
+  medicalSpecialityError,
   //unauthorizedError,
   //notFoundError,
   invalidCredentialsError,

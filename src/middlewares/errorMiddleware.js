@@ -23,7 +23,13 @@ export function handleApplicationErrors(err, req, res, next) {
     return res.status(httpStatus.NOT_FOUND).send({
       message: err.message,
     });
-  }
+  }  
+
+  if (err.name === "MedicalSpecialityError") {
+    return res.status(httpStatus.NOT_FOUND).send({
+      message: err.message, speciality: err.speciality
+    });
+  }  
 
   return res.status(httpStatus.INTERNAL_SERVER_ERROR).send({
     error: "InternalServerError",
