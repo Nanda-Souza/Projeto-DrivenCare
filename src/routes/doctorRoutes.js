@@ -6,6 +6,6 @@ import { doctorSchemma } from "../schemas/User.js";
 const doctorRoutes = Router();
 
 doctorRoutes.post('/signup', validateSchema(doctorSchemma) , doctorControllers.create)
-//patientRoutes.post("/signin", patientControllers.signin)
+doctorRoutes.post("/signin", doctorControllers.signin)
 
 export default doctorRoutes;
