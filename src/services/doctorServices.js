@@ -1,7 +1,8 @@
 import bcrypt from "bcrypt";
 import doctorRepositories from "../repositories/doctorRepositories.js";
-import { v4 as uuidV4 } from "uuid";
 import errors from "../errors/index.js";
+import jwt from "jsonwebtoken";
+import "dotenv/config"
 
 async function create({ name, email, password, speciality }) {  
   const { rowCount } = await doctorRepositories.findByEmail(email);   
@@ -29,8 +30,7 @@ async function signin({ email, password }) {
   const validPassword = await bcrypt.compare(password, user.password);
   if (!validPassword) throw errors.invalidCredentialsError();
 
-  const token = uuidV4();
-  await doctorRepositories.createSession({ token, user_id: user.id });
+  const token = jwt.sign({ user_id: user.id, profile: "doctor" }, process.env.SECRET_JWT, {expiresIn: 86400 }); // Secret key is a SHA-256
 
   return token;
 }

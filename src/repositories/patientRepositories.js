@@ -4,6 +4,7 @@ async function findByEmail(email) {
   return await connectionDb.query(
     `    
     SELECT * FROM users WHERE email=$1
+    AND id NOT IN (SELECT user_id FROM doctors)
   `,
     [email]
   );
