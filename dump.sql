@@ -182,38 +182,6 @@ ALTER SEQUENCE public.schedule_id_seq OWNED BY public.schedule.id;
 
 
 --
--- Name: sessions; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sessions (
-    id integer NOT NULL,
-    token text NOT NULL,
-    user_id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'America/Sao_Paulo'::text) NOT NULL
-);
-
-
---
--- Name: sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sessions_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.sessions_id_seq OWNED BY public.sessions.id;
-
-
---
 -- Name: speciality; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -341,13 +309,6 @@ ALTER TABLE ONLY public.schedule ALTER COLUMN id SET DEFAULT nextval('public.sch
 
 
 --
--- Name: sessions id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sessions ALTER COLUMN id SET DEFAULT nextval('public.sessions_id_seq'::regclass);
-
-
---
 -- Name: speciality id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -390,6 +351,8 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: doctors; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.doctors VALUES (3, 10, 3);
+INSERT INTO public.doctors VALUES (4, 11, 6);
 
 
 --
@@ -399,15 +362,18 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: -
---
-
-
-
---
 -- Data for Name: speciality; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.speciality VALUES (1, 'Alergia e imunologia');
+INSERT INTO public.speciality VALUES (2, 'Anestesiologia');
+INSERT INTO public.speciality VALUES (3, 'Cardiologia');
+INSERT INTO public.speciality VALUES (4, 'Cirurgia geral');
+INSERT INTO public.speciality VALUES (5, 'Clínica médica');
+INSERT INTO public.speciality VALUES (6, 'Dermatologia');
+INSERT INTO public.speciality VALUES (7, 'Psiquiatria');
+INSERT INTO public.speciality VALUES (8, 'Pediatria');
+INSERT INTO public.speciality VALUES (9, 'Ginecologia e obstetrícia');
 
 
 --
@@ -420,6 +386,10 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.users VALUES (1, 'Roger Souza', 'rs@rs.com', '$2b$10$qPSwhttO/zmQHQBZnjkAouDnRf/1R/A5h/dHrANdXGziFNwoMxLN6');
+INSERT INTO public.users VALUES (10, 'Drauzio Varela', 'dv@dv.com', '$2b$10$KfFXjdWUXMbYEzCw6HcXe.q034rD6KSGPAVx1aN5OGPpckHXt4Lba');
+INSERT INTO public.users VALUES (11, 'Paula Souza', 'ps@ps.com', '$2b$10$1vKNzpQmZbP5UuV8nJlsLO465DNss/MuSgEnhytM5w2ycLWLAoLaq');
+INSERT INTO public.users VALUES (12, 'Cecilia Luvison', 'cl@cl.com', '$2b$10$MQc3WkF0MkQk.uZvqZ/fKO4bRq/hCUPJLvsTa1lf3OecSvIW.9lg.');
 
 
 --
@@ -447,7 +417,7 @@ SELECT pg_catalog.setval('public.cities_id_seq', 1, false);
 -- Name: doctors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.doctors_id_seq', 1, false);
+SELECT pg_catalog.setval('public.doctors_id_seq', 4, true);
 
 
 --
@@ -458,17 +428,10 @@ SELECT pg_catalog.setval('public.schedule_id_seq', 1, false);
 
 
 --
--- Name: sessions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.sessions_id_seq', 1, false);
-
-
---
 -- Name: speciality_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.speciality_id_seq', 1, false);
+SELECT pg_catalog.setval('public.speciality_id_seq', 9, true);
 
 
 --
@@ -482,7 +445,7 @@ SELECT pg_catalog.setval('public.states_id_seq', 1, false);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, false);
+SELECT pg_catalog.setval('public.users_id_seq', 12, true);
 
 
 --
@@ -531,14 +494,6 @@ ALTER TABLE ONLY public.doctors
 
 ALTER TABLE ONLY public.schedule
     ADD CONSTRAINT schedule_pk PRIMARY KEY (id);
-
-
---
--- Name: sessions sessions_pk; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sessions
-    ADD CONSTRAINT sessions_pk PRIMARY KEY (id);
 
 
 --
