@@ -12,3 +12,7 @@ export const doctorSchemma = joi.object({
   password: joi.string().required(),
   speciality: joi.string().required(),
 });
+
+export const docNameSchemma = joi.object({
+  doc_name: joi.string().min(3).required()
+});

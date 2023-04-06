@@ -30,7 +30,20 @@ async function signin({ email, password }) {
   return token;
 }
 
+async function searchDocName({ doc_name }) {
+  
+  const { rows, rowCount } = await patientRepositories.findDoctorByName(doc_name);
+  if (!rowCount) throw errors.notFoundError();
+  
+
+  return rows
+  
+}
+
+
+
 export default {
   create,
   signin,
+  searchDocName,
 };

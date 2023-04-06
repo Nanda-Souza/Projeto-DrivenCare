@@ -29,29 +29,46 @@ async function createSession({ token, user_id }) {
     [token, user_id]
   );
 }
-/*
-async function findSessionByToken(token) {
+
+async function findDoctorByName(doc_name) {
   return await connectionDb.query(
     `
-        SELECT * FROM sessions WHERE token = $1
+    select 
+    u.name as "doctor_name",
+    s.medical_specialties,
+    a.street,
+    a.number,
+    a.complemento,
+    c.name as city_name,
+    st.name as state_name
+  from users u
+  JOIN doctors d on u.id = d.user_id
+  JOIN speciality s on s.id = d.speciality_id
+  JOIN address a on d.id = a.doctor_id
+  JOIN cities c on c.id = a.city_id
+  JOIN states st on st.id = c.state_id
+  WHERE u.name = $1
     `,
-    [token]
+    [doc_name]
   );
 }
+
 
 async function findById(id) {
   return await connectionDb.query(
     `    
     SELECT * FROM users WHERE id=$1
+    AND id NOT IN (SELECT user_id FROM doctors)
   `,
     [id]
   );
 }
-*/
+
+    
 export default {
   findByEmail,
   create,
   createSession,
-  /*findById,
-  findSessionByToken,*/
+  findById,
+  findDoctorByName,
 };

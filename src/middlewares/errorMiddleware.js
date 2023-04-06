@@ -18,6 +18,12 @@ export function handleApplicationErrors(err, req, res, next) {
       message: err.message,
     });
   }
+  
+  if (err.name === "InvalidProfileError") {
+    return res.status(httpStatus.UNAUTHORIZED).send({
+      message: err.message,
+    });
+  }
 
   if (err.name === "NotFoundError") {
     return res.status(httpStatus.NOT_FOUND).send({

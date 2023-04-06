@@ -20,7 +20,20 @@ async function signin(req, res, next) {
   }
 }
 
+async function searchDoctorName(req, res, next) {  
+  const { doc_name } = req.body;
+    
+  try {    
+    const result = await patientServices.searchDocName({ doc_name });
+    console.log(result)
+    return res.send({ result });
+  } catch (err) {
+    next(err);
+  }
+}
+
 export default {
   create,
   signin,
+  searchDoctorName,
 };

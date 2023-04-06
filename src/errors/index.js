@@ -22,7 +22,7 @@ function medicalSpecialityError(speciality) {
 }
 
 
-/*
+
 function unauthorizedError() {
   return {
     name: "UnauthorizedError",
@@ -35,7 +35,8 @@ function notFoundError() {
     name: "NotFoundError",
     message: "No result for this search!",
   };
-}*/
+}
+
 
 function invalidCredentialsError() {
   return {
@@ -44,11 +45,19 @@ function invalidCredentialsError() {
   };
 }
 
+function invalidProfileError() {
+  return {
+    name: "InvalidProfileError",
+    message: "Invalid profile, please use the proper profile for this operation",
+  };
+}
+
 export default {
   conflictError,
   duplicatedEmailError,
   medicalSpecialityError,
-  //unauthorizedError,
-  //notFoundError,
+  unauthorizedError,
+  notFoundError,
   invalidCredentialsError,
+  invalidProfileError,
 };
